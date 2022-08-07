@@ -1,28 +1,74 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import axios from 'axios';
+import UserList from './components/UserList';
 
-class App extends Component {
-    state = { loading: false };
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            users: [],
+        };
+    }
+
+    // componentDidMount() {
+    //     const users = [
+    //         {
+    //             username: 'tkvitko',
+    //             first_name: 'taras',
+    //             last_name: 'kvitko',
+    //             email: 'tkvitko@gmail.com',
+    //         },
+    //         {
+    //             username: 'admin',
+    //             first_name: '',
+    //             last_name: '',
+    //             email: 'tkvitko@bcc.ru',
+    //         },
+    //         {
+    //             username: 'test_added',
+    //             first_name: '',
+    //             last_name: '',
+    //             email: 'some@some.com',
+    //         },
+    //         {
+    //             username: 'test2',
+    //             first_name: '',
+    //             last_name: '',
+    //             email: 'test@tet.tet',
+    //         },
+    //         {
+    //             username: 'test3',
+    //             first_name: '',
+    //             last_name: '',
+    //             email: 'test@t.2',
+    //         },
+    //
+    //     ];
+    //     this.setState(
+    //         {
+    //             users,
+    //         },
+    //     );
+    // }
 
     componentDidMount() {
-        // 测试 devServer 的代理功能
-        // fetch('/api/category')
-        //     .then(resp => resp.json())
-        //     .then(res => console.log('here here', res));
+        axios.get('http://localhost:8000/api/users')
+            .then((response) => {
+                const users = response.data;
+                this.setState(
+                    {
+                        users,
+                    },
+                );
+            });
+            // .catch(error => console.log(error));
     }
 
     render() {
         return (
-            <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Welcome to React</h2>
-                </div>
-                <p>{ this.state.loading.toString() }</p>
-                <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+            <div>
+                <UserList users={this.state.users} />
             </div>
         );
     }
