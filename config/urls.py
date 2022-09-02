@@ -20,6 +20,18 @@ from rest_framework.authtoken import views
 
 from authapp.views import CustomUserLimitedModelViewSet
 from todoapp.views import ProjectModelViewSet, TodoModelViewSet
+from drf_yasg.views import get_schema_view
+from drf_yasg.openapi import Info, License, Contact
+
+schema_view = get_schema_view(
+    Info(
+        title='TodoApp',
+        default_version='1.0',
+        description='My App',
+        license=License(name='MIT'),
+        contact=Contact(email='tkvitko@gmail.com')
+    )
+)
 
 router = DefaultRouter()
 router.register('users', CustomUserLimitedModelViewSet)
@@ -30,5 +42,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
-    path('api-auth-token/', views.obtain_auth_token)
+    path('api-auth-token/', views.obtain_auth_token),
+    path('swagger', schema_view.with_ui()),
 ]
