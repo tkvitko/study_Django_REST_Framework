@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
+from graphene_django.views import GraphQLView
 
 from authapp.views import CustomUserLimitedModelViewSet
 from todoapp.views import ProjectModelViewSet, TodoModelViewSet
@@ -44,4 +45,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth-token/', views.obtain_auth_token),
     path('swagger', schema_view.with_ui()),
+    path('graphql', GraphQLView.as_view(graphiql=True)),
 ]
