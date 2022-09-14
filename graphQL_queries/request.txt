@@ -1,0 +1,22 @@
+{
+  allTodos{
+    id
+    text
+    project{
+      id
+    }
+    author{
+    	firstName
+      lastName
+    }
+  }
+  allProjects{
+    id
+    name
+    users{
+      id
+      firstName
+      lastName
+    }
+  }
+}

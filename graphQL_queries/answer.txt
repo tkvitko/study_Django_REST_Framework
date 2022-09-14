@@ -1,0 +1,30 @@
+{
+  "data": {
+    "allTodos": [
+      {
+        "id": "1",
+        "text": "My test text.",
+        "project": {
+          "id": "1"
+        },
+        "author": {
+          "firstName": "taras",
+          "lastName": "kvitko"
+        }
+      }
+    ],
+    "allProjects": [
+      {
+        "id": "1",
+        "name": "My first project",
+        "users": [
+          {
+            "id": "2",
+            "firstName": "",
+            "lastName": ""
+          }
+        ]
+      }
+    ]
+  }
+}
